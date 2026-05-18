@@ -61,7 +61,7 @@ $resultat = mysqli_query($connexion, $requete);
 </header>
 
 <main>
-     <h2> Rechercher un événement</h2>
+     <h2> Rechercher Evénement</h2>
     <form method="GET" action="index.php">
 
     <label>Date :</label>
