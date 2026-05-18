@@ -23,7 +23,7 @@ $resultat = mysqli_query($connexion, $requete);
 
 <head>
     <meta charset="UTF-8">
-    <title>OmnesEvent - Accueil</title>
+    <title>OmnesEvent - Accueil & Recherche</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -61,6 +61,31 @@ $resultat = mysqli_query($connexion, $requete);
 </header>
 
 <main>
+     <h2> Rechercher un événement</h2>
+    <form method="GET" action="index.php">
+
+    <label>Date :</label>
+    <input type="date" name="date_event">
+
+    <label>Catégorie :</label>
+    <select name="categorie">
+
+        <option value="">Toutes</option>
+        <option value="Soirée">Soirée</option>
+        <option value="Sport">Sport</option>
+        <option value="Culture">Culture</option>
+
+    </select>
+
+    <label>Association :</label>
+    <input type="text" name="association">
+
+    <button type="submit">
+        Rechercher
+    </button>
+
+</form>
+
 
     <h2>Événements à venir</h2>
 
