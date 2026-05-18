@@ -73,8 +73,11 @@ if (mysqli_num_rows($resultat) > 0) {
 
         $contenu_qr = "Reservation:" . $evenement['id_reservation'] . " - " . $evenement['titre'] . " - " . $evenement['date_event'] . " - " . $evenement['lieu'];
 
-        $url_qr = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" . urlencode($contenu_qr);
+        
 
+        
+        $url_qr = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($contenu_qr);
+echo $url_qr;
 ?>
 
         <section class="carte">
