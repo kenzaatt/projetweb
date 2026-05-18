@@ -2,20 +2,20 @@
 
 session_start();
 
+if (!isset($_SESSION['id'])) {
+    header("Location: connexion.php");
+    exit();
+}
+
 $serveur = "localhost";
 $utilisateur = "root";
-$motdepasse = "";
+$motdepasse_bdd = "";
 $base = "omnesevent";
 
-$connexion = mysqli_connect($serveur, $utilisateur, $motdepasse, $base);
+$connexion = mysqli_connect($serveur, $utilisateur, $motdepasse_bdd, $base);
 
 if (!$connexion) {
     die("Erreur de connexion");
-}
-
-if (!isset($_SESSION['id']) || $_SESSION['role'] != "organisateur") {
-    header("Location: connexion.php");
-    exit();
 }
 
 $titre = $_POST['titre'];
@@ -30,19 +30,47 @@ $id_organisateur = $_SESSION['id'];
 $affiche = "";
 
 if (isset($_FILES['affiche']) && $_FILES['affiche']['name'] != "") {
+
+    if (!is_dir("uploads")) {
+        mkdir("uploads");
+    }
+
     $affiche = $_FILES['affiche']['name'];
-    $chemin = "uploads/" . $affiche;
-    move_uploaded_file($_FILES['affiche']['tmp_name'], $chemin);
+
+    move_uploaded_file(
+        $_FILES['affiche']['tmp_name'],
+        "uploads/" . $affiche
+    );
 }
 
-
 $requete = "
-INSERT INTO evenements(titre, description, date_event, lieu, categorie, association, capacite, id_organisateur)
-VALUES('$titre', '$description', '$date_event', '$lieu', '$categorie', '$association', '$affiche', '$capacite', '$id_organisateur')
+INSERT INTO evenements(
+titre,
+description,
+date_event,
+lieu,
+categorie,
+association,
+affiche,
+capacite,
+id_organisateur
+)
+VALUES(
+'$titre',
+'$description',
+'$date_event',
+'$lieu',
+'$categorie',
+'$association',
+'$affiche',
+'$capacite',
+'$id_organisateur'
+)
 ";
 
 mysqli_query($connexion, $requete);
 
 header("Location: dashboard_organisateur.php");
+exit();
 
 ?>
