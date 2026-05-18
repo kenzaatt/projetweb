@@ -13,6 +13,13 @@ if (!$connexion) {
     die("Erreur de connexion");
 }
 
+$requete_suppression_auto = "
+DELETE FROM evenements
+WHERE date_event < CURDATE()
+";
+
+mysqli_query($connexion, $requete_suppression_auto);
+
 $requete = "SELECT * FROM evenements WHERE 1=1";
 //création de recherche dynamique
 if (isset($_GET['categorie']) && $_GET['categorie'] != "") {
@@ -125,6 +132,12 @@ $resultat = mysqli_query($connexion, $requete);
                     <?php echo $evenement['titre']; ?>
                 </h3>
 
+                <?php
+                if ($evenement['affiche'] != "") {
+                    echo '<img src="uploads/' . $evenement['affiche'] . '" alt="Affiche événement">';
+                }
+                ?>
+
                 <p>
                     <?php echo $evenement['description']; ?>
                 </p>
@@ -138,6 +151,8 @@ $resultat = mysqli_query($connexion, $requete);
                     <strong>Lieu :</strong>
                     <?php echo $evenement['lieu']; ?>
                 </p>
+                
+
 
                 <p>
                     <strong>Catégorie :</strong>

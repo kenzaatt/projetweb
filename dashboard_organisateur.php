@@ -83,6 +83,20 @@ if (mysqli_num_rows($resultat) > 0) {
                 <?php echo $evenement['titre']; ?>
             </h3>
 
+            <?php
+            if ($evenement['affiche'] != "") {
+            ?>
+
+                <img
+                    src="uploads/<?php echo $evenement['affiche']; ?>"
+                    alt="Affiche événement"
+                    style="width:100%; max-width:400px; border-radius:10px; margin-bottom:15px;"
+                >
+
+            <?php
+            }
+            ?>
+
             <p>
                 <?php echo $evenement['description']; ?>
             </p>
@@ -101,6 +115,16 @@ if (mysqli_num_rows($resultat) > 0) {
                 <strong>Capacité :</strong>
                 <?php echo $evenement['capacite']; ?>
             </p>
+
+            <a href="detail_evenement.php?id=<?php echo $evenement['id']; ?>">
+                Voir l'événement
+            </a>
+
+            <br><br>
+
+            <a href="supprimer_evenement.php?id=<?php echo $evenement['id']; ?>">
+                Supprimer
+            </a>
 
         </section>
 
