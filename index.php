@@ -125,6 +125,12 @@ $resultat = mysqli_query($connexion, $requete);
                     <?php echo $evenement['titre']; ?>
                 </h3>
 
+                <?php
+                if ($evenement['affiche'] != "") {
+                    echo '<img src="uploads/' . $evenement['affiche'] . '" alt="Affiche événement">';
+                }
+                ?>
+
                 <p>
                     <?php echo $evenement['description']; ?>
                 </p>
@@ -138,6 +144,8 @@ $resultat = mysqli_query($connexion, $requete);
                     <strong>Lieu :</strong>
                     <?php echo $evenement['lieu']; ?>
                 </p>
+                
+
 
                 <p>
                     <strong>Catégorie :</strong>

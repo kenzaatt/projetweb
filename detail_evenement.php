@@ -82,7 +82,7 @@ $places_restantes = $evenement['capacite'] - $places['nb_reservations'];
 
     <section class="carte">
 
-
+         <img src="assets/uploads/<?php echo $evenement['affiche']; ?>">
         <p>
             <?php echo $evenement['description']; ?>
         </p>

@@ -70,7 +70,8 @@ if (!isset($_SESSION['id']) || $_SESSION['role'] != "organisateur") {
         <label>Capacité maximale :</label>
         <input type="number" name="capacite" min="1" required>
 
-
+        <label>Affiche :</label>
+        <input type="file" name="affiche">
 
         <button type="submit">Créer l'événement</button>
 

@@ -29,10 +29,16 @@ $id_organisateur = $_SESSION['id'];
 
 $affiche = "";
 
+if (isset($_FILES['affiche']) && $_FILES['affiche']['name'] != "") {
+    $affiche = $_FILES['affiche']['name'];
+    $chemin = "uploads/" . $affiche;
+    move_uploaded_file($_FILES['affiche']['tmp_name'], $chemin);
+}
+
 
 $requete = "
 INSERT INTO evenements(titre, description, date_event, lieu, categorie, association, capacite, id_organisateur)
-VALUES('$titre', '$description', '$date_event', '$lieu', '$categorie', '$association', '$capacite', '$id_organisateur')
+VALUES('$titre', '$description', '$date_event', '$lieu', '$categorie', '$association', '$affiche', '$capacite', '$id_organisateur')
 ";
 
 mysqli_query($connexion, $requete);
