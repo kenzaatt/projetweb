@@ -1,9 +1,9 @@
 <?php
 
-$serveur = "localhost";
-$utilisateur = "root";
-$motdepasse = "";
-$base = "omnesevent";
+$serveur = "fdb1031.your-hosting.net";
+$utilisateur = "4760301_ng2groupe3h26";
+$motdepasse = "262026henrilekk+1@246";
+$base = "4760301_ng2groupe3h26";
 
 $connexion = mysqli_connect(
     $serveur,
