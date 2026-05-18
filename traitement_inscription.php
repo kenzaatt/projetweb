@@ -8,7 +8,7 @@ $base = "omnesevent";
 $connexion = mysqli_connect($serveur, $utilisateur, $motdepasse_bdd, $base);
 
 if (!$connexion) {
-    die("Erreur de connexion - recommencez");
+    die("Erreur de connexion");
 }
 
 $nom = $_POST['nom'];
@@ -16,7 +16,21 @@ $email = $_POST['email'];
 $motdepasse = md5($_POST['motdepasse']);
 $role = $_POST['role'];
 
-$requete_verif = "SELECT * FROM utilisateurs WHERE email = '$email'";
+if ($role == "participant") {
+
+    $valide = 1;
+
+} else {
+
+    $valide = 0;
+}
+
+$requete_verif = "
+SELECT *
+FROM utilisateurs
+WHERE email = '$email'
+";
+
 $resultat_verif = mysqli_query($connexion, $requete_verif);
 
 if (mysqli_num_rows($resultat_verif) > 0) {
@@ -26,8 +40,21 @@ if (mysqli_num_rows($resultat_verif) > 0) {
 } else {
 
     $requete = "
-    INSERT INTO utilisateurs(nom, email, motdepasse, role)
-    VALUES('$nom', '$email', '$motdepasse', '$role')
+    INSERT INTO utilisateurs(
+    nom,
+    email,
+    motdepasse,
+    role,
+    valide
+    )
+
+    VALUES(
+    '$nom',
+    '$email',
+    '$motdepasse',
+    '$role',
+    '$valide'
+    )
     ";
 
     mysqli_query($connexion, $requete);

@@ -61,23 +61,32 @@ $resultat = mysqli_query($connexion, $requete);
 <body>
 
 <nav>
+
     <a href="index.php">OmnesEvent Accueil</a>
 
     <?php
     if (isset($_SESSION['id'])) {
+
         echo '<a href="mes_billets.php">Mes billets</a>';
         echo '<a href="profil.php">Profil</a>';
 
-        if ($_SESSION['role'] == "organisateur") {
+        if (isset($_SESSION['role']) && $_SESSION['role'] == "organisateur") {
             echo '<a href="dashboard_organisateur.php">Espace organisateur</a>';
         }
 
+        if (isset($_SESSION['role']) && $_SESSION['role'] == "admin") {
+            echo '<a href="dashboard_admin.php">Espace admin</a>';
+        }
+
         echo '<a href="deconnexion.php">Déconnexion</a>';
+
     } else {
+
         echo '<a href="connexion.php">Connexion</a>';
         echo '<a href="inscription.php">Inscription</a>';
     }
     ?>
+
 </nav>
 
 <header>
