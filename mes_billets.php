@@ -76,7 +76,7 @@ if (mysqli_num_rows($resultat) > 0) {
         
 
         
-        $url_qr = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" . urlencode($contenu_qr);
+        $url_qr = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=" . urlencode($contenu_qr);
 echo $url_qr;
 ?>
 
