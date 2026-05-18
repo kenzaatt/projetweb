@@ -2,16 +2,7 @@
 
 session_start();
 
-$serveur = "localhost";
-$utilisateur = "root";
-$motdepasse = "";
-$base = "omnesevent";
-
-$connexion = mysqli_connect($serveur, $utilisateur, $motdepasse, $base);
-
-if (!$connexion) {
-    die("Erreur de connexion");
-}
+include_once 'connexion_bdd.php';
 
 if (!isset($_SESSION['id']) || $_SESSION['role'] != "organisateur") {
     header("Location: connexion.php");

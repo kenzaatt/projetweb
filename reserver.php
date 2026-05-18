@@ -7,10 +7,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
-$serveur = "localhost";
-$utilisateur = "root";
-$motdepasse_bdd = "";
-$base = "omnesevent";
+include_once 'connexion_bdd.php';
 
 $connexion = mysqli_connect($serveur, $utilisateur, $motdepasse_bdd, $base);
 

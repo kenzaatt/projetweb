@@ -2,16 +2,7 @@
 
 session_start();
 
-$serveur = "localhost";
-$utilisateur = "root";
-$motdepasse_bdd = "";
-$base = "omnesevent";
-
-$connexion = mysqli_connect($serveur, $utilisateur, $motdepasse_bdd, $base);
-
-if (!$connexion) {
-    die("Erreur de connexion");
-}
+include_once 'connexion_bdd.php';
 
 $email = $_POST['email'];
 
