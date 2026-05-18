@@ -21,7 +21,7 @@ if (!$connexion) {
 $id = $_SESSION['id'];
 
 $requete = "
-SELECT evenements.*
+SELECT evenements.*, reservations.id AS id_reservation
 FROM reservations
 INNER JOIN evenements
 ON reservations.id_evenement = evenements.id
@@ -71,6 +71,10 @@ if (mysqli_num_rows($resultat) > 0) {
 
     while ($evenement = mysqli_fetch_assoc($resultat)) {
 
+        $contenu_qr = "Reservation:" . $evenement['id_reservation'] . " - " . $evenement['titre'] . " - " . $evenement['date_event'] . " - " . $evenement['lieu'];
+
+        $url_qr = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=" . urlencode($contenu_qr);
+
 ?>
 
         <section class="carte">
@@ -92,6 +96,10 @@ if (mysqli_num_rows($resultat) > 0) {
                 <strong>Lieu :</strong>
                 <?php echo $evenement['lieu']; ?>
             </p>
+
+            <p><strong>Votre billet :</strong></p>
+
+            <img src="<?php echo $url_qr; ?>" alt="QR Code billet">
 
         </section>
 
