@@ -51,7 +51,7 @@ $resultat = mysqli_query($connexion, $requete);
 
 <header>
     <h1>OmnesEvent</h1>
-    <p>La plateforme des événements étudiants d’Omnes</p>
+    <p>La plateforme des événements étudiants d’Oomnes</p>
 
     <?php
     if (isset($_SESSION['nom'])) {
