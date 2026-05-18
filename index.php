@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+//
 $serveur = "localhost";
 $utilisateur = "root";
 $motdepasse = "";
@@ -13,7 +13,31 @@ if (!$connexion) {
     die("Erreur de connexion");
 }
 
-$requete = "SELECT * FROM evenements ORDER BY date_event ASC";
+$requete = "SELECT * FROM evenements WHERE 1=1";
+//création de recherche dynamique
+if (isset($_GET['categorie']) && $_GET['categorie'] != "") {
+
+    $categorie = $_GET['categorie'];
+
+    $requete .= " AND categorie = '$categorie'";
+}
+
+if (isset($_GET['association']) && $_GET['association'] != "") {
+
+    $association = $_GET['association'];
+
+    $requete .= " AND association LIKE '%$association%'";
+}
+
+if (isset($_GET['date_event']) && $_GET['date_event'] != "") {
+
+    $date_event = $_GET['date_event'];
+
+    $requete .= " AND date_event = '$date_event'";
+}
+
+$requete .= " ORDER BY date_event ASC";
+
 $resultat = mysqli_query($connexion, $requete);
 
 ?>
@@ -23,14 +47,14 @@ $resultat = mysqli_query($connexion, $requete);
 
 <head>
     <meta charset="UTF-8">
-    <title>OmnesEvent - Accueil & Recherche</title>
+    <title>OmnesEvent - Acccueil</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <nav>
-    <a href="index.php">Accueil</a>
+    <a href="index.php">OmnesEvent Accueil</a>
 
     <?php
     if (isset($_SESSION['id'])) {
