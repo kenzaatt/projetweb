@@ -14,7 +14,7 @@ if (!$connexion) {
 }
 
 $requete = "SELECT * FROM evenements WHERE 1=1";
-
+//création de recherche dynamique
 if (isset($_GET['categorie']) && $_GET['categorie'] != "") {
 
     $categorie = $_GET['categorie'];
