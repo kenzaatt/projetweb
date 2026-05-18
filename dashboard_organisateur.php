@@ -102,6 +102,10 @@ if (mysqli_num_rows($resultat) > 0) {
                 <?php echo $evenement['capacite']; ?>
             </p>
 
+            <a href="supprimer_evenement.php?id=<?php echo $evenement['id']; ?>">
+            Supprimer
+            </a>
+
         </section>
 
 <?php

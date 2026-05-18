@@ -13,6 +13,13 @@ if (!$connexion) {
     die("Erreur de connexion");
 }
 
+$requete_suppression_auto = "
+DELETE FROM evenements
+WHERE date_event < CURDATE()
+";
+
+mysqli_query($connexion, $requete_suppression_auto);
+
 $requete = "SELECT * FROM evenements WHERE 1=1";
 //création de recherche dynamique
 if (isset($_GET['categorie']) && $_GET['categorie'] != "") {
